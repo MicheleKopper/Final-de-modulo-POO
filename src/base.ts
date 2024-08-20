@@ -3,17 +3,21 @@ import { User } from "./class/User";
 import { randomUUID } from "crypto"; // Cria Ids automático a cada nova instância
 
 
+// ----------------- USUÁRIO -----------------
 // Usuário
 export const user: User[] = []
 
 export abstract class BaseId {
     private _id: string
 
-    constructor() { 
+    constructor() {
         this._id = randomUUID()
     }
-}
 
+    get id(): string {
+        return this._id
+    }
+}
 
 // Seguir usuário - Follow user
 export const followUser: User[] = []
@@ -22,10 +26,10 @@ export const followUser: User[] = []
 export const following: User[] = []
 
 
-
+// ----------------- TWEETS -----------------
 // Tweets
 export const tweets: Tweet[] = []
-export const replies: Tweet [] = []
+export const replies: Tweet[] = []
 
-// Lista de curtidas
-export const likes: Tweet [] = []
+
+// ----------------- LIKE -----------------

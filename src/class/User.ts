@@ -17,12 +17,19 @@ export class User extends BaseId {
         this._password = password
     }
 
-    // Enviar tweet
+    // _________________________ ENVIAR TWEETS _________________________
+
     sendTweet(tweet: Tweet): void {
         tweets.push(tweet)
     }
 
-    // Seguir (usuário) ... followUser = Seguir usuário | following = seguindo
+
+
+
+    // _________________________ SEGUIR USUÁRIO _________________________
+
+    // followUser = Seguir usuário | following = seguindo
+
     follow(user: User): void {
         if (user === this) { // --> Verifica se está seguindo a si mesmo
             console.log('Tá viajando? Não é possível seguir a si mesmo');
@@ -41,26 +48,32 @@ export class User extends BaseId {
 
 
 
+    // _________________________ MOSTRAR FEED _________________________
 
+    showFeed(): void {
+        
+        // Tweets do usuário
+        console.log(`Tweets do próprio usuário ${this.getUsername()}:`);
+        tweets.filter(tweet => tweet.getUser() === this).forEach(tweet => tweet.show());
 
-
-
-
-
-
-
-
-
-
-    // Mostrar feed
-    showFeed(): Tweet[] {
-
-        let feed: Tweet[] = []
-        return feed
+        // Tweets dos seguidores
+        console.log(`Tweets dos usuários que ${this.getUsername()} segue:`);
+        tweets.filter(tweet => followUser.includes(tweet.getUser())).forEach(tweet => tweet.show());
     }
 
-    // // Mostrar tweets
-    // showTweets(): Tweet [] {
 
-    // }
+
+
+    // _________________________ MOSTRAR TWEETS _________________________
+
+    showTweets(): {
+
+    }
+
+    // Método para obter o nome de usuário
+    // Este método na classe User retorna o nome de usuário. Isso é usado para exibir mensagens sobre quem curtiu o tweet.
+    getUsername(): string {
+        return this._username;
+    }
+
 }
