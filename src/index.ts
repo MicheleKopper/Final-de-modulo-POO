@@ -2,10 +2,9 @@ import { User } from "./class/User";
 import { Tweet } from "./class/Tweet";
 import { replies, tweets } from "./base";
 
-
-console.log('_______________________ USUÁRIO _______________________');
-
-// Criar 
+console.log();
+console.log('_______________________ CRIAR USUÁRIOS _______________________');
+console.log();
 const user01 = new User('Michele Kopper', '@michelek', 'michelekopper@gmail.com', '12345')
 console.log(user01);
 
@@ -19,43 +18,40 @@ console.log(user03);
 
 
 console.log();
-
-console.log('-----> SEGUIR NOVO USER <-----');
-user01.follow(user02) // Usuário 1 segue Usuário 2
-
+console.log('_______________________ CRIAR TWEETS _______________________');
 console.log();
 
-console.log('-----> ERRO: SEGUIR MESMO USER <-----');
-user01.follow(user02)
+const tweet01 = new Tweet(user01, 'Meu primeiro recadinho', 'Normal')
+console.log(tweet01);
+
+const tweet02 = new Tweet(user02, 'Olá, Mi... como vai?', "Reply", tweet01)
+console.log(tweet02);
+
+const tweet03 = new Tweet(user03, 'Seja bem-vinda, Michele', "Reply", tweet01)
+console.log(tweet03);
+
+
+
 
 console.log();
+console.log('_______________________ CURTIR TWEETS _______________________');
+console.log();
 
-console.log('-----> ERRO: SEGUIR A SI MESMO <-----');
-user01.follow(user01)
+tweet01.like(user02)
+tweet01.like(user03)
 
 
-// Mostrar feed
 
+
+console.log();
+console.log('_______________________ MOSTRAR TWEETS _______________________');
+console.log();
+
+console.log('Tweets do user01:');
+user01.showTweets()
+
+console.log('user01');
 user01.showFeed()
-
-
-
-
-
-console.log();
-
-console.log('_______________________ TWEET _______________________');
-const tweet = new Tweet(user01, 'Meu recadinho', 'Normal')
-console.log(tweet);
-
-console.log();
-console.log('-----> RESPOSTA AO TWEET <-----');
-
-tweet.replay('oiiii, tudo bem?', user03)
-tweet.replay('Olá, sim e com vc?', user01)
-
-console.log(replies);
-
 
 
 
