@@ -58,10 +58,10 @@ export class Tweet extends BaseId {
     const totalLikes = this._likes.size;
 
     if (totalLikes === 1) {
-      const [userLike] = this._likes;
+      const [userLike] = Array.from(this._likes);
       console.log(`@${userLike.getUsername()} curtiu`);
     } else if (totalLikes > 1) {
-      const [userLike] = this._likes;
+      const [userLike] = Array.from(this._likes);
       console.log(
         `@${userLike.getUsername()} e mais ${totalLikes - 1} usuários curtiram`
       );
@@ -74,17 +74,12 @@ export class Tweet extends BaseId {
 
   showReplies(): void {
     const totalReplies = replies.filter(
-      (reply) => reply.gettweetPai() === this
+      (reply) => reply.getTweetPai() === this
     );
-
-    if (totalReplies.length === 0) {
-      console.log("Que pena! Sem nenhuma resposta");
-      return;
-    }
 
     console.log("Respostas:");
     totalReplies.forEach((reply) => {
-      console.log(`> @${reply.getUser().getUsername()}: ${reply._content}`);
+      console.log(`> @${reply.getUser().getUsername()}: ${reply.getContent()}`);
     });
   }
 
@@ -94,7 +89,11 @@ export class Tweet extends BaseId {
     return this._user; // --> Obtém o usuário que criou o tweet
   }
 
-  gettweetPai(): Tweet | null {
+  getTweetPai(): Tweet | null {
     return this._tweetPai; // --> Obtém o tweet pai
+  }
+
+  getContent(): string {
+    return this._content;
   }
 }
