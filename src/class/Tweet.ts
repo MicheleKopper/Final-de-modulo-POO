@@ -32,7 +32,7 @@ export class Tweet extends BaseId {
       return;
     }
 
-    const replayTweet = new Tweet(user, content, "Reply");
+    const replayTweet = new Tweet(user, content, "Reply", this);
     replies.push(replayTweet); // --> Insere a resposta na lista de replies
     console.log(`Novo comentário: ${content}`);
   }
@@ -73,13 +73,17 @@ export class Tweet extends BaseId {
   // _________________________ MOSTRA AS RESPOSTAS DO TWEET _________________________
 
   showReplies(): void {
-    if (replies.length === 0) {
+    const totalReplies = replies.filter(
+      (reply) => reply.gettweetPai() === this
+    );
+
+    if (totalReplies.length === 0) {
       console.log("Que pena! Sem nenhuma resposta");
       return;
     }
 
     console.log("Respostas:");
-    replies.forEach((reply) => {
+    totalReplies.forEach((reply) => {
       console.log(`> @${reply.getUser().getUsername()}: ${reply._content}`);
     });
   }

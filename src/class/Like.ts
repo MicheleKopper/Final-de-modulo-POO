@@ -1,8 +1,7 @@
-import { BaseId } from "../base"
+import { BaseId } from "../base";
 
 export class Like extends BaseId {
-
-    constructor() {
-        super()
-    }
+  constructor() {
+    super();
+  }
 }
