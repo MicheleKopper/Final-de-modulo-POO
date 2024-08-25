@@ -25,15 +25,14 @@ export class Tweet extends BaseId {
 
   // _________________________ ADICIONA UMA RESPOSTA AO TWEET _________________________
 
-  replay(content: string, user: User): void {
+  reply(content: string, user: User): void {  // Certifique-se de que o nome é 'reply'
     if (content.length === 0) {
-      // --> Verifica se foi escrito algo
       console.log("Eiii! Escreva alguma coisa");
       return;
     }
 
-    const replayTweet = new Tweet(user, content, "Reply", this);
-    replies.push(replayTweet); // --> Insere a resposta na lista de replies
+    const replyTweet = new Tweet(user, content, "Reply", this);
+    replies.push(replyTweet); // Insere a resposta na lista global de replies
     console.log(`Novo comentário: ${content}`);
   }
 
@@ -50,7 +49,7 @@ export class Tweet extends BaseId {
     console.log(`${user.getUsername()} curtiu o tweet: "${this._content}"`);
   }
 
-  // _________________________ MOSTRA O TWEET COM LIKE _________________________
+  // _________________________ MOSTRA TWEETS E LIKES _________________________
 
   show(): void {
     console.log(`@${this._user.getUsername()}: ${this._content}`);
@@ -63,7 +62,7 @@ export class Tweet extends BaseId {
     } else if (totalLikes > 1) {
       const [userLike] = Array.from(this._likes);
       console.log(
-        `@${userLike.getUsername()} e mais ${totalLikes - 1} usuários curtiram`
+        `${userLike.getUsername()} e mais ${totalLikes - 1} usuários curtiram`
       );
     }
 
@@ -76,13 +75,12 @@ export class Tweet extends BaseId {
     const totalReplies = replies.filter(
       (reply) => reply.getTweetPai() === this
     );
-
-    console.log("Respostas:");
+  
     totalReplies.forEach((reply) => {
       console.log(`> @${reply.getUser().getUsername()}: ${reply.getContent()}`);
     });
   }
-
+  
   // _________________________ MÉTODOS GETTERS _________________________
 
   getUser(): User {

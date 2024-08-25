@@ -6,8 +6,9 @@ export class User extends BaseId {
   private _username: string;
   private _email: string;
   private _password: string;
+  private _following: User[] = [];
 
-  constructor(name: string, username: string, email: string, password: string) {
+  constructor(name: string, username: string, email: string, password: string ) {
     super();
     this._name = name;
     this._username = username;
@@ -32,16 +33,18 @@ export class User extends BaseId {
       return;
     }
 
-    if (followUser.includes(user)) {
-      // --> Verifica se já está seguindo aquele user
-      console.log(`Oppa, passarinho! Você já segue ${user._username}`);
+    if (this._following.includes(user)) {
+      // Verifica se já está seguindo aquele usuário
+      console.log(`Oppa, passarinho! Você já segue ${user.getUsername()}`);
       return;
     }
 
-    followUser.push(user);
+    this._following.push(user); // Adiciona o usuário à lista de seguidos
     console.log(
       `Uhull ${this.getUsername()}, agora você segue ${user.getUsername()}`
     );
+
+    
   }
 
   // _________________________ MOSTRAR FEED _________________________
@@ -75,5 +78,9 @@ export class User extends BaseId {
   // Este método na classe User retorna o nome de usuário. Isso é usado para exibir mensagens sobre quem curtiu o tweet.
   getUsername(): string {
     return this._username;
+  }
+
+  getFollowing(): User[] {
+    return this._following; // Retorna a lista de usuários seguidos
   }
 }

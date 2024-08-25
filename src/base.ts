@@ -20,9 +20,6 @@ export abstract class BaseId {
 // Seguir usuário - Follow user
 export const followUser: User[] = [];
 
-// Usuários seguindo
-export const following: User[] = [];
-
 // ----------------- TWEETS -----------------
 export const tweets: Tweet[] = [];
 export const replies: Tweet[] = [];
