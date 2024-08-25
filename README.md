@@ -10,7 +10,7 @@ Este projeto é uma simulação simples de um sistema de gerenciamento de rede s
 - Seguir Usuários: Siga outros usuários para ver seus tweets no feed
 - Visualização de Feed: Exiba os tweets do próprio usuário e dos usuários que ele segue
 
-
+![mockup](https://github.com/user-attachments/assets/d6c6e5c7-829e-48ba-bb44-2f834a9a6b81)
 
 ## Contato
 Michele Kopper - michelekopper@gmail.com
