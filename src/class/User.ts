@@ -6,9 +6,9 @@ export class User extends BaseId {
   private _username: string;
   private _email: string;
   private _password: string;
-  private _following: User[] = [];
+  private _following: User[] = []; // Lista de usuários seguidos
 
-  constructor(name: string, username: string, email: string, password: string ) {
+  constructor(name: string, username: string, email: string, password: string) {
     super();
     this._name = name;
     this._username = username;
@@ -40,11 +40,10 @@ export class User extends BaseId {
     }
 
     this._following.push(user); // Adiciona o usuário à lista de seguidos
+    followUser.push(user); // Adiciona o usuário à lista global de seguidos
     console.log(
       `Uhull ${this.getUsername()}, agora você segue ${user.getUsername()}`
     );
-
-    
   }
 
   // _________________________ MOSTRAR FEED _________________________
@@ -56,11 +55,11 @@ export class User extends BaseId {
       .filter((tweet) => tweet.getUser() === this)
       .forEach((tweet) => tweet.show());
 
-    // Tweets dos seguidores
+    // Tweets dos usuários que o usuário segue
     console.log(`Tweets dos usuários que ${this.getUsername()} segue:`);
     tweets
-      .filter((tweet) => followUser.includes(tweet.getUser()))
-      .forEach((tweet) => tweet.show());
+    .filter((tweet) => followUser.includes(tweet.getUser()))
+    .forEach((tweet) => tweet.show());
   }
 
   // _________________________ MOSTRAR TWEETS _________________________

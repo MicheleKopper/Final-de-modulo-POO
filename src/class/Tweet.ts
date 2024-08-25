@@ -25,7 +25,8 @@ export class Tweet extends BaseId {
 
   // _________________________ ADICIONA UMA RESPOSTA AO TWEET _________________________
 
-  reply(content: string, user: User): void {  // Certifique-se de que o nome é 'reply'
+  reply(content: string, user: User): void {
+    // Certifique-se de que o nome é 'reply'
     if (content.length === 0) {
       console.log("Eiii! Escreva alguma coisa");
       return;
@@ -49,16 +50,16 @@ export class Tweet extends BaseId {
     console.log(`${user.getUsername()} curtiu o tweet: "${this._content}"`);
   }
 
-  // _________________________ MOSTRA TWEETS E LIKES _________________________
+  // _________________________ MOSTRA TWEET E LIKES _________________________
 
+  // Mostra o tweet e suas respostas
   show(): void {
-    console.log(`@${this._user.getUsername()}: ${this._content}`);
+    console.log(`${this._user.getUsername()}: ${this._content}`);
 
     const totalLikes = this._likes.size;
-
     if (totalLikes === 1) {
       const [userLike] = Array.from(this._likes);
-      console.log(`@${userLike.getUsername()} curtiu`);
+      console.log(`${userLike.getUsername()} curtiu`);
     } else if (totalLikes > 1) {
       const [userLike] = Array.from(this._likes);
       console.log(
@@ -71,16 +72,17 @@ export class Tweet extends BaseId {
 
   // _________________________ MOSTRA AS RESPOSTAS DO TWEET _________________________
 
+  // Mostra as respostas do tweet
   showReplies(): void {
     const totalReplies = replies.filter(
       (reply) => reply.getTweetPai() === this
     );
-  
+
     totalReplies.forEach((reply) => {
-      console.log(`> @${reply.getUser().getUsername()}: ${reply.getContent()}`);
+      console.log(`> ${reply.getUser().getUsername()}: ${reply.getContent()}`);
     });
   }
-  
+
   // _________________________ MÉTODOS GETTERS _________________________
 
   getUser(): User {
@@ -95,3 +97,5 @@ export class Tweet extends BaseId {
     return this._content;
   }
 }
+
+

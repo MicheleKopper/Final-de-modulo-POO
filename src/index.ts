@@ -1,7 +1,6 @@
 import { User } from "./class/User";
 import { Tweet } from "./class/Tweet";
 
-
 console.log();
 console.log("_______________________ CRIAR USUÁRIOS _______________________");
 console.log();
@@ -46,11 +45,9 @@ console.log(user05); // Username: @matheus
 
 
 
-
 console.log();
 console.log("_______________________ CRIAR TWEETS _______________________");
 console.log();
-
 
 console.log('------> USER 01 | MICHELE <------');
 const tweet01 = new Tweet(user01, "A motivação é uma porta que se abre por dentro.", "Normal"); 
@@ -77,7 +74,6 @@ const tweet03 = new Tweet(user03, "Seres humanos são como tapetes. Às vezes, p
 user03.sendTweet(tweet03);
 console.log(tweet03);
 
-
 const tweet03a = new Tweet(user03, 'Uma das coisas mais perigosas da vida é gente que concorda com você o tempo todo', "Normal")
 user03.sendTweet(tweet03a)
 console.log(tweet03a);
@@ -87,7 +83,6 @@ console.log('------> USER 04 | BELLA <------');
 const tweet04 = new Tweet(user04, "O impossível não é um fato: é uma opinião", "Normal"); 
 user04.sendTweet(tweet04);
 console.log(tweet04);
-
 
 const tweet04a = new Tweet(user04, 'Coragem é preparo e não mera disposição eufórica', "Normal")
 user04.sendTweet(tweet04a)
@@ -99,7 +94,6 @@ const tweet05 = new Tweet(user05, "O mundo pertence aos otimistas: os pessimista
 user05.sendTweet(tweet05);
 console.log(tweet05);
 
-
 const tweet05a = new Tweet(user05, 'A justiça precisa ser inteligente, não vingativa', "Normal")
 user05.sendTweet(tweet05a)
 console.log(tweet05a);
@@ -108,97 +102,39 @@ console.log(tweet05a);
 
 
 console.log();
-console.log("_______________________ LIKES TWEETS _______________________");
+console.log("_______________________ RESPONDER TWEETS _______________________");
 console.log();
 
-tweet01.like(user02); 
-tweet01.like(user03);
-console.log();
-tweet01a.like(user04)
-tweet01a.like(user05)
-console.log();
+tweet01.reply('Concordo totalmente com essa frase!', user02);
+tweet01.reply('Realmente, é uma ótima reflexão!', user03);
 
-tweet02.like(user01)
-tweet02.like(user03)
-console.log();
-tweet02a.like(user04)
-tweet02a.like(user05)
-console.log();
+tweet02.reply('Excelente ponto de vista!', user03);
+tweet02.reply('Precisamos mais de mensagens como esta.', user01);
 
-tweet03.like(user01)
-tweet03.like(user02)
-console.log();
-tweet03a.like(user04)
-tweet03a.like(user05)
-console.log();
-
-tweet04.like(user01)
-tweet04.like(user02)
-console.log();
-tweet04a.like(user03)
-tweet04a.like(user05)
-console.log();
-
-tweet05.like(user01)
-tweet05.like(user02)
-
-tweet05a.like(user03)
-tweet05a.like(user04)
+tweet03.reply('Oi, tudo bem com você?', user04)
+tweet03.reply('Sim, tudo certinho comigo. E você como está?', user03)
 
 console.log();
-console.log("_______________________ MOSTRAR TWEETS _______________________");
+console.log('<<< Exibição de tweets com replies >>>');
+console.log();
+
+tweet01.show();
+console.log();
+
+tweet02.show();
+console.log();
+
+tweet03.show();
 console.log();
 
 
-console.log('------> TWEETS | MICHELE <------');
-user01.showTweets();
-
-console.log();
-console.log('------> TWEETS | THEODORO <------');
-user02.showTweets();
-
-console.log();
-console.log('------> TWEETS | ANDRÉ <------');
-user03.showTweets();
-
-console.log();
-console.log('------> TWEETS | BELLA <------');
-user04.showTweets();
-
-console.log();
-console.log('------> TWEETS | MATHEUS <------');
-user05.showTweets();
-
-
-console.log();
-console.log("_______________________ MOSTRAR FEED _______________________");
-console.log();
-
-console.log('------> FEED | MICHELE <------')
-user01.showFeed();
-
-console.log();
-console.log('------> FEED | THEODORO <------');
-user02.showFeed();
-
-console.log();
-console.log('------> FEED | ANDRÉ <------');
-user03.showFeed();
-
-console.log();
-console.log('------> FEED | BELLA <------');
-user04.showFeed();
-
-console.log();
-console.log('------> FEED | MATHEUS <------');
-user05.showFeed();
 
 
 console.log();
 console.log("_______________________ SEGUIR E MOSTRAR LISTA _______________________");
 console.log();
 
-console.log('Seguir usuários:');
+console.log('<<< Seguir usuários >>>');
 user01.follow(user02);
 user01.follow(user03);
 user01.follow(user04)
@@ -223,14 +159,14 @@ user05.follow(user04)
 
 
 console.log();
-console.log('Seguir a si mesmo:');
+console.log('<<< Seguir a si mesmo >>>');
 user01.follow(user01)
 
 
 
 
 console.log();
-console.log('Liste de usuários seguidos:');
+console.log('<<< Liste de usuários seguidos >>>');
 console.log('--> Michele Kopper, segue os usuários:');
 const following01 = user01.getFollowing();
 following01.forEach((user) => {
@@ -273,10 +209,97 @@ following05.forEach((user) => {
 
 
 console.log();
-console.log("_______________________ RESPONDER AO TWEET _______________________");
+console.log("_______________________ LIKES TWEETS _______________________");
 console.log();
 
-user01.sendTweet(tweet01)
-tweet01.reply('Ótimo', user02)
-tweet01.showReplies()
+tweet01.like(user02); 
+tweet01.like(user03);
+console.log();
+tweet01a.like(user04)
+tweet01a.like(user05)
+console.log();
+
+tweet02.like(user01)
+tweet02.like(user03)
+console.log();
+tweet02a.like(user04)
+tweet02a.like(user05)
+console.log();
+
+tweet03.like(user01)
+tweet03.like(user02)
+console.log();
+tweet03a.like(user04)
+tweet03a.like(user05)
+console.log();
+
+tweet04.like(user01)
+tweet04.like(user02)
+console.log();
+tweet04a.like(user03)
+tweet04a.like(user05)
+console.log();
+
+tweet05.like(user01)
+tweet05.like(user02)
+console.log();
+tweet05a.like(user03)
+tweet05a.like(user04)
+
+
+
+
+console.log();
+console.log("_______________________ MOSTRAR TWEETS COM LIKES _______________________");
+console.log();
+
+console.log('------> TWEETS | MICHELE <------');
+user01.showTweets();
+
+console.log();
+console.log('------> TWEETS | THEODORO <------');
+user02.showTweets();
+
+console.log();
+console.log('------> TWEETS | ANDRÉ <------');
+user03.showTweets();
+
+console.log();
+console.log('------> TWEETS | BELLA <------');
+user04.showTweets();
+
+console.log();
+console.log('------> TWEETS | MATHEUS <------');
+user05.showTweets();
+
+
+
+
+console.log();
+console.log("_______________________ MOSTRAR FEED _______________________");
+console.log();
+
+console.log('------> FEED | MICHELE <------')
+user01.showFeed();
+
+console.log();
+console.log('------> FEED | THEODORO <------');
+user02.showFeed();
+
+console.log();
+console.log('------> FEED | ANDRÉ <------');
+user03.showFeed();
+
+console.log();
+console.log('------> FEED | BELLA <------');
+user04.showFeed();
+
+console.log();
+console.log('------> FEED | MATHEUS <------');
+user05.showFeed();
+
+
+
+
+
 
